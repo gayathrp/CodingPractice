@@ -1,12 +1,13 @@
 package Trees;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.HashMap;
 
 public class NonAnagramBFS {
-	
-	static TreeNode temp;
+
 	
 	public static void main(String args[])
 	{
@@ -21,35 +22,49 @@ public class NonAnagramBFS {
 		a.children.add(b);
 		a.children.add(c);
 		c.children.add(d);
-		findNonAnagram(a);
+		HashMap<String, ArrayList<TreeNode>> map = new HashMap<>();
+		map = findNonAnagram(a);
+		for(String key : map.keySet())
+		{
+			if(map.get(key).size()==1)
+				System.out.println(map.get(key).get(0).data);
+		}
 	}
-	
-	private static void findNonAnagram(TreeNode root)
+
+	private static HashMap<String, ArrayList<TreeNode>> findNonAnagram(TreeNode root)
 	{
-		if(root==null) return;
+		if(root==null) return null;
 		Queue<TreeNode> q = new LinkedList<>();
-		ArrayList<TreeNode> nonAnagrams = new ArrayList<>();
 		q.add(root);
-		String abc = (String)root.data;
+		String sortedRoot = Sort(root);
+		HashMap<String, ArrayList<TreeNode>> hmap = new HashMap<>();
+		ArrayList<TreeNode> list = new ArrayList<TreeNode>();
+		list.add(root);
+		hmap.put(sortedRoot, list);
 		while(!q.isEmpty())
 		{
-			temp = q.poll();
-			if(temp.children == null) return;
+
+			TreeNode temp = q.poll();
+			if(temp.children == null) return null;
 			for(int i = 0 ; i < temp.children.size() ; i++)
 			{
+				String sortedChild = Sort(temp.children.get(i));
 				q.add(temp.children.get(i));
-				if(!abc.equalsIgnoreCase(Sort(temp.children.get(i))))
+				if(hmap.containsKey(sortedChild))
 				{
-					nonAnagrams.add(temp.children.get(i));
+					hmap.get(sortedChild).add(temp.children.get(i));
+				}
+				else
+				{
+					list = new ArrayList<TreeNode>();
+					list.add(temp.children.get(i));
+					hmap.put(sortedChild, list);
 				}
 			}
-			
+
 		}
-		for(int i = 0 ; i < nonAnagrams.size() ; i++)
-		{
-			System.out.println("Non Anagrams: "+nonAnagrams.get(i).data);
-		}
-		
+	return hmap;
+
 	}
 	
 	private static String Sort(TreeNode root){
