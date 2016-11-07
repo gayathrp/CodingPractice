@@ -12,3 +12,23 @@
 hs_err_pid*
 
 *.iml
+
+Project/.idea/compiler.xml
+
+Project/.idea/copyright/profiles_settings.xml
+
+Project/.idea/misc.xml
+
+Project/.idea/modules.xml
+
+Project/.idea/workspace.xml
+
+Project/src/.idea/compiler.xml
+
+Project/src/.idea/copyright/profiles_settings.xml
+
+Project/src/.idea/misc.xml
+
+Project/src/.idea/modules.xml
+
+Project/src/.idea/workspace.xml

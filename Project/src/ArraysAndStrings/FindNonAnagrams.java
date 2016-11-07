@@ -16,8 +16,6 @@ public class FindNonAnagrams {
 		} 
 	}
 
-
-
 	private static HashMap<String, ArrayList<String>> getMap(ArrayList<String> input) {
 		HashMap<String, ArrayList<String>> hmap = new HashMap<>();
 

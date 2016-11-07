@@ -23,7 +23,7 @@ public class RotateString {
 					System.out.println("yes");
 					return true;
 				}
-
+				
 			}
 		}
 		return true;
