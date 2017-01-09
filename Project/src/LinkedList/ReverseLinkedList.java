@@ -13,15 +13,18 @@ public class ReverseLinkedList {
         Node three = new Node();
         Node four = new Node();
         Node five = new Node();
+        Node six = new Node();
         head.data = 1;
         two.data = 2;
         three.data = 3;
         four.data = 4;
         five.data = 5;
+        six.data = 6;
         head.next = two;
         two.next = three;
         three.next = four;
         four.next = five;
+        five.next = six;
         splitList(head);
 
     }
@@ -38,11 +41,10 @@ public class ReverseLinkedList {
     private static void splitList(Node node) {
         Node slow = node;
         Node fast = slow.next;
-        while(fast != null) {
+        while(fast != null && fast.next != null) {
             slow = slow.next;
             fast = fast.next.next;
         }
-
         Node node1 = node;
         Node node2 = slow.next;
         slow.next = null;

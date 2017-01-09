@@ -1,44 +1,28 @@
-package ArraysAndStrings;
-
 public class StringCompression {
-	
-	private static int count = 1;
-	static String charstr = null;
-	static String s = "";
-
-
-	public static void main(String args[])
-	{
-		String str = "aabccccddde";
-		char [] chars = new char [100];
-		chars = str.toCharArray();
-		Compress(chars);
+	public static void main(String args[]) {
+		String str = "aabbbccccddddd";
+		if(compress(str).length() > str.length()) {
+			System.out.println(str);
+		}
 	}
-	
-
-	public static void Compress(char [] chars)
-	{
-		for(int i=0; i<chars.length-1;i++)
-		{		
-			if(chars[i]==chars[i+1])
-			{
-				count = count + 1;
-				charstr = chars[i]+""+count;
+	private static String compress(String input) {
+		StringBuffer str = new StringBuffer();
+		char last = input.charAt(0);
+		int count = 1;
+		for(int i = 1 ; i < input.length() ; i++) {
+			if(input.charAt(i) == last) {
+				count++;
 			}
-			else
-			{
-
-				s = s+charstr;
+			else {
+				str.append(last);
+				str.append(count);
 				count = 1;
-				charstr = chars[i+1]+""+count;
+				last = input.charAt(i);
 			}
-
 		}
-		s = s+charstr;
-		System.out.println(s);
-		if(s.length()>chars.length)
-		{
-			System.out.println(new String(chars));
-		}
+		str.append(last);
+		str.append(count);
+		System.out.println(str.toString());
+		return str.toString();
 	}
 }

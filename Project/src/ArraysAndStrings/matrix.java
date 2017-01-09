@@ -1,62 +1,35 @@
-package ArraysAndStrings;
 public class matrix {
-public static void main(String args[])
-{
-	int array[][] = new int[2][2];
-	for(int i=0; i<2; i++)
-	{
-		for(int j=0; j<2; j++)
-		{
-			array[i][j] = 1;
-		}
+	public static void main(String args[]) {
+		int[][] matrix = new int[3][3];
+		for (int row = 0; row < 3; row ++)
+			for (int col = 0; col < 3; col++)
+				matrix[row][col] = 1 + row * 3 + col;
+		matrix[1][2] = 0;
+		for (int row = 0; row < 3; row ++)
+			for (int col = 0; col < 3; col++)
+				System.out.println(matrix[row][col]);
+		replaceMatrix(matrix);
 	}
-	array[0][0] = 0;
-	for(int i=0; i<2; i++)
-	{
-		for(int j=0; j<2; j++)
-		{
-			System.out.print(array[i][j]);
-		}
-		System.out.println();
-	}
-	makeZero(array);
-}
-public static void makeZero(int array[][])
-{
-	int x = -1;
-	int y = -1;
-	for(int i=0; i<2; i++)
-	{
-		for(int j=0; j<2; j++)
-		{
-			if(array[i][j]==0)
-			{
-				x = i;
-				System.out.println("x"+x);
-				y = j;
-				System.out.println("y"+y);
+	private static int [][] replaceMatrix(int [][] mat) {
+		boolean rows[] = new boolean[mat.length];
+		boolean cols[] = new boolean[mat.length];
+		for (int row = 0; row < 3; row ++) {
+			for (int col = 0; col < 3; col++) {
+				if(mat[row][col] == 0) {
+					rows[row] = true;
+					cols[col] = true;
+				}
 			}
 		}
-	}
-	if(x >= 0 && y >= 0)
-	{
-		for(int i=0; i<2; i++)
-		{
-			array [i][y] = 0;
-			
+		for (int row = 0; row < 3; row ++) {
+			for (int col = 0; col < 3; col++) {
+				if(rows[row] || cols[col])
+					mat[row][col] = 0;
+			}
 		}
-		for(int j=0; j<2; j++)
-		{
-			array [x][j] = 0;
-		}
+		for (int row = 0; row < 3; row ++)
+			for (int col = 0; col < 3; col++)
+				System.out.println(mat[row][col]);
+		return mat;
 	}
-	for(int i=0; i<2; i++)
-	{
-		for(int j=0; j<2; j++)
-		{
-			System.out.print(array[i][j]);
-		}
-		System.out.println();
-	}
-}
 }

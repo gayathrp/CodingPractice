@@ -50,6 +50,6 @@ public class Palindrome {
             else
                 return;
         }
-        System.out.println("The list is not a palindrome");
+        System.out.println("The list is a palindrome");
     }
 }

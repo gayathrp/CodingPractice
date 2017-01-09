@@ -1,27 +1,28 @@
-package ArraysAndStrings;
 import java.util.Arrays;
-import Utilities.StringUtils;
-public class Permutation {
 
-	public static void main(String args[])
-	{
-		String str11=null;
-		isPermutation("abcd","dcaba");
+public class Permutation {
+	public static void main(String args[]) {
+		String str1 = "apple";
+		String str2 = "eppla";
+		isPermutation(str1, str2);
 	}
-	public static boolean isPermutation(String str1, String str2)
-	{
-		String sortedStr1 = StringUtils.Sort(str1);
-		String sortedStr2 = StringUtils.Sort(str2);
-		if(sortedStr1.equals(sortedStr2))
+
+
+	private static boolean isPermutation(String input1, String input2) {
+		if(input1 == null) return false;
+		if(input2 == null) return false;
+		if(input1.length() != input2.length()) return false;
+		if(sort(input1).equals(sort(input2)))
 		{
-			System.out.println("Yes - strings are equal");
+			System.out.println("Two strings are equal");
 			return true;
 		}
 		else
-		{
-			System.out.println("No - strings are not equal");
 			return false;
-		}
 	}
-	
+	private static String sort(String input) {
+		char [] str = input.toCharArray();
+		Arrays.sort(str);
+		return new String(str);
+	}
 }
